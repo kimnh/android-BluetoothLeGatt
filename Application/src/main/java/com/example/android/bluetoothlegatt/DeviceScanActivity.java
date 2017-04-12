@@ -89,6 +89,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
     public boolean flag_minor = false;
     public boolean loop_flag = false;
     int i;
+    public String option;
 
     static final char[] hexArray = "0123456789ABCDEF".toCharArray();
 
@@ -235,7 +236,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        //final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
         final LeScanRecord device = mLeDeviceListAdapter.getDevice(position);
         if (device == null) return;
 
@@ -253,7 +253,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
 */
 
         if (mScanning) {
-            //mBluetoothAdapter.stopLeScan(mLeScanCallback);
             mBLEScanner.startScan(mScanCallback);
             mScanning = false;
         }
@@ -265,7 +264,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                 @Override
                 public void run() {
                     mScanning = false;
-                    //mBluetoothAdapter.stopLeScan(mLeScanCallback);
                     mBLEScanner.stopScan(mScanCallback);
                     invalidateOptionsMenu();
                 }
@@ -273,14 +271,10 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
 
             mScanning = true;
             loop_flag = false;
-            // mBluetoothAdapter.startLeScan(mLeScanCallback);
             mBLEScanner.startScan(mScanCallback);
-
         } else {
             mScanning = false;
-            // mBluetoothAdapter.stopLeScan(mLeScanCallback);
             mBLEScanner.stopScan(mScanCallback);
-
         }
         invalidateOptionsMenu();
     }
@@ -422,7 +416,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                         minor = (by[startByte + 22] & 0xff) * 0x100 + (by[startByte + 23] & 0xff);
                         //Log.i(TAG,"major :" + major + "minor : " +minor);
                     }
-
 //170411
 /*
                     if (major == Integer.parseInt(major_number) && minor == Integer.parseInt(minor_number)) {
@@ -490,10 +483,15 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             this.minor_Num = minor_Num;
             this.uuid = uuid;
         }
-
         @Override
         public int compareTo(@NonNull LeScanRecord o) {
-            return ((LeScanRecord) o).rssi - this.rssi;
+            if(option.equals("1")){
+                return this.major_Num - ((LeScanRecord) o).major_Num;
+            }else if (option.equals("2")){
+                return this.minor_Num - ((LeScanRecord) o).minor_Num;
+            } else {
+                return ((LeScanRecord) o).rssi - this.rssi;
+            }
         }
     }
 
@@ -513,30 +511,39 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
 //        Log.i(TAG, "minor 11 : " + minor_number);
         rssi_value = sharedPreferences.getString(getString(R.string.pref_rssi_key), getString(R.string.pref_rssi_default));
 //        Log.i(TAG, "rssi 11 : " + rssi_value);
-        rssi_boolean = sharedPreferences.getBoolean(getString(R.string.pref_rssi_check_key), getResources().getBoolean((R.bool.pref_rssi_default)));
+        rssi_boolean = sharedPreferences.getBoolean(getString(R.string.pref_popup_key), getResources().getBoolean((R.bool.pref_rssi_default)));
      // Log.i(TAG, "rssi_boolean  : " + rssi_boolean + "  shard : " + sharedPreferences.getBoolean(getString(R.string.pref_rssi_check_key), getResources().getBoolean((R.bool.pref_rssi_default))));
+
+
+        sortingOptionFromPreferences(sharedPreferences);
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    private void sortingOptionFromPreferences(SharedPreferences sharedPreferences){
+        option = sharedPreferences.getString(getString(R.string.pref_check_key), getString(R.string.pref_rssi_check_value));
+        Log.i(TAG,"option selected "+ option);
+    }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.pref_show_major_key))) {
             major_number = sharedPreferences.getString(key, getResources().getString(R.string.pref_major_default));
             //Log.i(TAG, " Test2 : " + major_number);
         }
-        if (key.equals(getString(R.string.pref_rssi_check_key))) {
+        else if (key.equals(getString(R.string.pref_popup_key))) {
             rssi_boolean = sharedPreferences.getBoolean(key, getResources().getBoolean((R.bool.pref_rssi_default)));
             //Log.i(TAG, " rssi_booleannnnnnn: " + rssi_boolean + "  shard : " + sharedPreferences.getBoolean(getString(R.string.pref_rssi_check_key), getResources().getBoolean((R.bool.pref_rssi_default))));
         }
-        if (key.equals(getString(R.string.pref_show_minor_key))) {
+        else if (key.equals(getString(R.string.pref_show_minor_key))) {
             minor_number = sharedPreferences.getString(key, getResources().getString((R.string.pref_minor_default)));
         }
-        if (key.equals(getString(R.string.pref_rssi_key))) {
+        else if (key.equals(getString(R.string.pref_rssi_key))) {
             rssi_value = sharedPreferences.getString(key, getResources().getString((R.string.pref_rssi_default)));
         }
+        else if(key.equals(getString(R.string.pref_check_key))){
+            sortingOptionFromPreferences(sharedPreferences);
+        }
     }
-
     private static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for ( int j = 0; j < bytes.length; j++ ) {
@@ -545,6 +552,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
         return new String(hexChars);
+
     }
 
     private void DialogSimple(int Major,int Minor,int rssi){

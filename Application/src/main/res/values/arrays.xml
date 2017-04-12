@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_check_labels">
+        <item>@string/pref_major_check_label</item>
+        <item>@string/pref_minor_check_label</item>
+        <item>@string/pref_rssi_check_label</item>
+    </array>
+
+    <array name="pref_check_values">
+        <item>@string/pref_major_check_value</item>
+        <item>@string/pref_minor_check_value</item>
+        <item>@string/pref_rssi_check_value</item>
+    </array>
+</resources>
+
+

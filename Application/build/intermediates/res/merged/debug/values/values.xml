@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <array name="pref_check_labels">
+        <item>@string/pref_major_check_label</item>
+        <item>@string/pref_minor_check_label</item>
+        <item>@string/pref_rssi_check_label</item>
+    </array>
+    <array name="pref_check_values">
+        <item>@string/pref_major_check_value</item>
+        <item>@string/pref_minor_check_value</item>
+        <item>@string/pref_rssi_check_value</item>
+    </array>
     <attr format="reference" name="constraintSet"/>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -500,10 +510,18 @@
     <string name="menu_scan">Scan</string>
     <string name="menu_stop">Stop</string>
     <string name="no_data">No data</string>
+    <string name="pref_check_key" translatable="false">Sorting</string>
+    <string name="pref_check_label">Sorting</string>
+    <string name="pref_major_check_label">Major</string>
+    <string name="pref_major_check_value" translatable="false">1</string>
     <string name="pref_major_default" translatable="false">6000</string>
+    <string name="pref_minor_check_label">Minor</string>
+    <string name="pref_minor_check_value" translatable="false">2</string>
     <string name="pref_minor_default" translatable="false">1001</string>
-    <string name="pref_rssi_check_key" translatable="false">check_rssi</string>
-    <string name="pref_rssi_check_label">Checing Rssi</string>
+    <string name="pref_popup_key" translatable="false">check_rssi</string>
+    <string name="pref_popup_label">Pop up</string>
+    <string name="pref_rssi_check_label">Rssi</string>
+    <string name="pref_rssi_check_value" translatable="false">3</string>
     <string name="pref_rssi_default" translatable="false">-80</string>
     <string name="pref_rssi_false">Hidden</string>
     <string name="pref_rssi_key" translatable="false">rssi_value</string>
