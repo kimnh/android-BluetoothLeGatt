@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android Open Source Project
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,9 +13,36 @@
      limitations under the License.
 -->
 <resources>
+
     <string name="ble_not_supported">BLE is not supported</string>
     <string name="label_data">Data:</string>
     <string name="label_device_address">Device address:</string>
+
+    <string name="label_device_rssi">Device rssi:</string>
+    <string name="label_major_number">Major Number</string>
+    <string name="label_minor_number">Minor Number</string>
+
+
+    <string name="pref_show_major_key" translatable="false">show_major</string>
+    <string name="pref_major_default" translatable="false">6000</string>
+
+    <string name="pref_show_minor_key" translatable="false">show_minor</string>
+    <string name="pref_minor_default" translatable="false">1001</string>
+
+
+    <!-- Label for the show bass checkbox preference -->
+    <string name="pref_rssi_check_label">Checing Rssi</string>
+    <!-- Key name for storing bass in SharedPreferences -->
+    <string name="pref_rssi_check_key" translatable="false">check_rssi</string>
+
+    <!-- Summary for Checkboxes -->
+    <string name="pref_rssi_true">Shown</string>
+    <string name="pref_rssi_false">Hidden</string>
+
+    <string name="pref_rssi_key" translatable="false">rssi_value</string>
+    <string name="pref_rssi_default" translatable="false">-80</string>
+
+
     <string name="label_state">State:</string>
     <string name="no_data">No data</string>
     <string name="connected">Connected</string>
@@ -33,4 +59,7 @@
     <string name="menu_disconnect">Disconnect</string>
     <string name="menu_scan">Scan</string>
     <string name="menu_stop">Stop</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

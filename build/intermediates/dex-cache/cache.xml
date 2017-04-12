@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.1.0_4e3a4cbad6cfd6eda5eaadc0625e4e587f1ab1f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.0\support-annotations-25.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\support-annotations-25.1.0_5e44c7d504018a3a6c296747aac358c0c0fa166e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-fragment\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.1.0_e2524c78bee10f92de34f3ad2a1d6729ae6474d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\preference-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="378c0fefdd7adedd0ea74d7607b3d4a251b29d78">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-preference-v7-25.1.0_0f7f9a35d2fd610bfc2f59ccb07359722e6a83a4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.1.0_d4a169fdb00ae90502b8fbf59c1c2671593076c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.1.0_60cb7f4373566dfffbad11f3e52f49716b2f52b7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-v13\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e006c9b6f0aaed9d8c7934b74039738390fe3468">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-v13-25.1.0_5d747208c7886d69605474ad230676af42ea2809.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7f2420506110902f033406b25697cf97ee8c38b2">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-25.1.0_65973b6a0d4bbb0de8236ea2767660fba56022e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-25.1.0_b9b884184b36255a426b912a3fecbb3cb6687ac3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.1.0_6674bf58be65246503cf75e6b99421dca985406b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.1.0_14359ab59c9d580d75c99c4d802b701e80dd5732.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.2\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support.constraint-constraint-layout-1.0.2_10fc58841168af367be2ed8fff94acef11ae868e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.1.0_646cbb62cfe8b58f13a23dec8636574be2169025.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.1.0_e5bb68560117c5c292cb6a1946060084962f0b12.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\exploded-aar\com.android.support\support-v4\25.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.1.0_5c66f84c06af7e108bbf1552c87fc84718799559.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\kim\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\kim\Downloads\pntbiz\android-BluetoothLeGatt\Application\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_3cd1bc20bf13f8970a6a1e242b362e6721e1b658.jar" />
+    </item>
+
+</items>

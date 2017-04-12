@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_major_default"
+        android:key="@string/pref_show_major_key"
+        android:title="@string/label_major_number"/>
+    <EditTextPreference
+        android:defaultValue="@string/pref_minor_default"
+        android:key="@string/pref_show_minor_key"
+        android:title="@string/label_minor_number"/>
+    <EditTextPreference
+        android:defaultValue="@string/pref_rssi_default"
+        android:key="@string/pref_rssi_key"
+        android:title="Rssi"/>
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_rssi_default"
+        android:key="@string/pref_rssi_check_key"
+        android:summaryOff="@string/pref_rssi_false"
+        android:summaryOn="@string/pref_rssi_true"
+        android:title="@string/pref_rssi_check_label" />
+
+</PreferenceScreen>
+

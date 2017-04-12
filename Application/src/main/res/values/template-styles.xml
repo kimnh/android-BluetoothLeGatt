@@ -22,7 +22,16 @@
 
     <style name="Theme.Sample" parent="Theme.Base" />
 
-    <style name="AppTheme" parent="Theme.Sample" />
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
+        <item name="colorPrimary">#3f7fa0</item>
+        <item name="colorPrimaryDark">#6fafa0</item>
+        <item name="colorAccent">#0000ff</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+    </style>
+
+
     <!-- Widget styling -->
 
     <style name="Widget" />
