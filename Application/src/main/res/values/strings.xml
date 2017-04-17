@@ -44,8 +44,8 @@
 
 
     <string name="pref_check_label">Sorting</string>
-    <string name="pref_major_check_label">Major</string>
-    <string name="pref_minor_check_label">Minor</string>
+    <string name="pref_major_check_label">Asending</string>
+    <string name="pref_minor_check_label">Desending</string>
     <string name="pref_rssi_check_label">Rssi</string>
     <string name="pref_check_key" translatable="false">Sorting</string>
     <string name="pref_major_check_value" translatable="false">1</string>

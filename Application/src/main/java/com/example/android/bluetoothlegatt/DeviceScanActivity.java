@@ -18,9 +18,7 @@ package com.example.android.bluetoothlegatt;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+
 import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -33,11 +31,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ParcelUuid;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -77,7 +73,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
-    private static final long SCAN_PERIOD = 5000;
+    private static final long SCAN_PERIOD = 1000;
     private BluetoothLeScanner mBLEScanner;
     private ArrayList<LeScanRecord> mLeDevices;
 
@@ -89,6 +85,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
     public boolean flag_minor = false;
     public boolean loop_flag = false;
     int i;
+    int kin = 0;
     public String option;
 
     static final char[] hexArray = "0123456789ABCDEF".toCharArray();
@@ -130,7 +127,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             return;
         }
         setupSharePreferences();
-
     }
 
     @Override
@@ -140,6 +136,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(TAG, "coarse location permission granted");
                 } else {
+                    Toast.makeText(this, "GPS를 켜주세요", Toast.LENGTH_SHORT).show();
                     // TODO Show message to the user indicating the app will not be able to monitor beacons
                 }
                 break;
@@ -155,7 +152,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         inflater.inflate(R.menu.main, menu);
 
         //menu.findItem(R.id.action_settings).setVisible(true);
-
         if (!mScanning) {
             menu.findItem(R.id.menu_stop).setVisible(false);
             menu.findItem(R.id.menu_scan).setVisible(true);
@@ -190,7 +186,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -210,7 +205,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             }
         }
-
         // Initializes list view adapter.
         mLeDeviceListAdapter = new LeDeviceListAdapter();
         setListAdapter(mLeDeviceListAdapter);
@@ -251,7 +245,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         }
         startActivity(intent);
 */
-
         if (mScanning) {
             mBLEScanner.startScan(mScanCallback);
             mScanning = false;
@@ -282,29 +275,53 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
     // Adapter for holding devices found through scanning.
     //private class LeDeviceListAdapter extends BaseAdapter {
     private class LeDeviceListAdapter extends ArrayAdapter<LeScanRecord> {
-
         private LayoutInflater mInflator;
+        //private ArrayList<LeScanRecord> mLeDevices;
 
         public LeDeviceListAdapter() {
             super(DeviceScanActivity.this, R.layout.listitem_device);
             mLeDevices = new ArrayList<LeScanRecord>();
             mInflator = DeviceScanActivity.this.getLayoutInflater();
         }
+/*
+        public void addDevice(BluetoothDevice blue,int rssi, String uuid,int major,int minor){
+            LeScanRecord temp = new LeScanRecord(blue,rssi,uuid,major,minor);
+            Log.i(TAG,"www " + temp.device.getAddress());
+            if(!mLeDevices.contains(temp)){
+                mLeDevices.add(temp);
+                Log.i(TAG," fdsa : " + blue.getAddress());
 
-        public void add(LeScanRecord object) {
+            }else{
+                Log.i(TAG," asdf : " + blue.getAddress());
+            }
+        }
+*/
+
+        //public void addDevice(LeScanRecord device) {
+            public void addDevice(BluetoothDevice blue,int rssi, String uuid,int major,int minor){
+                LeScanRecord device = new LeScanRecord(blue,rssi,uuid,major,minor);
+            int k;
             if (mLeDeviceListAdapter.getCount() > 0) {
-                for (int i = 0; i < mLeDeviceListAdapter.getCount(); i++) {
-                    if (mLeDevices.get(i).device.equals(object.device)) {
+                for (k = 0; k < mLeDeviceListAdapter.getCount(); k++) {
+                    if (mLeDevices.get(k).device.getAddress().equals(device.device.getAddress())) {
+                       //Log.i(TAG, mLeDevices.get(k).device+" rssi :  " + mLeDevices.get(k).rssi  + " VS " + device.device +" rssi: " + device.rssi);
+                        //Log.i(TAG, " same : " + device.device.getAddress());
                         return; // do not add duplicates
+                    } else {
+                        //Log.i(TAG, " not same : " + device.device.getAddress());
                     }
                 }
+                mLeDevices.add(device);
+            } else {
+                mLeDevices.add(device);
             }
-            //super.add(object);
-            mLeDevices.add(object);
 
-//Sorting***
+
             Collections.sort(mLeDevices);
         }
+
+
+
 
         public LeScanRecord getDevice(int position) {
             return mLeDevices.get(position);
@@ -320,16 +337,16 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         }
 
         @Nullable
-        @Override
-        public LeScanRecord getItem(int position) {
-            return super.getItem(position);
-        }
 
+        //public LeScanRecord getItem(int position) {
+//            return super.getItem(position);
+//        }
+
+        public Object getITem(int position) { return mLeDevices.get(position);}
         @Override
         public long getItemId(int i) {
             return i;
         }
-
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
@@ -340,9 +357,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                 viewHolder = new ViewHolder();
                 viewHolder.deviceAddress = (TextView) view.findViewById(R.id.device_address);
                 viewHolder.deviceName = (TextView) view.findViewById(R.id.device_name);
-
                 viewHolder.deviceRssi = (TextView) view.findViewById(R.id.device_rssi);
-
                 view.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
@@ -350,7 +365,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             //BluetoothDevice device = mLeDevices.get(i);
             LeScanRecord device = mLeDevices.get(i);
             final String deviceName = device.device.getName();
-
+/*
             if (deviceName != null && deviceName.length() > 0) {
                 viewHolder.deviceName.setText(deviceName);
                 viewHolder.deviceAddress.setText(device.device.getAddress());
@@ -358,6 +373,19 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                 viewHolder.deviceRssi.append(" Rssi :" + Integer.toString(device.rssi));
                 viewHolder.deviceAddress.append("   major :" + device.major_Num + "  minor :  " + device.minor_Num);
             }
+            return view;
+*/
+            if (deviceName != null && deviceName.length() > 0){
+                viewHolder.deviceName.setText(deviceName);
+                //viewHolder.deviceRssi.append(" Rssi :" + Integer.toString(device.rssi));
+                viewHolder.deviceRssi.setText(" UUID : " + device.uuid + " Rssi :" + Integer.toString(device.rssi));
+            }
+            else{
+                viewHolder.deviceName.setText(R.string.unknown_device);
+            }
+            viewHolder.deviceAddress.setText(device.device.getAddress());
+            viewHolder.deviceAddress.append("   major :" + device.major_Num + "  minor :  " + device.minor_Num);
+
             return view;
         }
     }
@@ -383,6 +411,7 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     byte[] by;
                     int major = -1;
                     int minor = -1;
@@ -416,27 +445,11 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                         minor = (by[startByte + 22] & 0xff) * 0x100 + (by[startByte + 23] & 0xff);
                         //Log.i(TAG,"major :" + major + "minor : " +minor);
                     }
-//170411
-/*
-                    if (major == Integer.parseInt(major_number) && minor == Integer.parseInt(minor_number)) {
-                        flag = true;
-                        mLeDeviceListAdapter.add(new LeScanRecord(result.getDevice(),result.getRssi(),uuid, major, minor));
-                        result.getScanRecord().getServiceData();
-                        mLeDeviceListAdapter.notifyDataSetChanged();
-                    } //else {
-                    if (major_number.equals("60000")) {
-                        flag = false;
-                        mLeDeviceListAdapter.add(new LeScanRecord(result.getDevice(), result.getRssi(),uuid, major, minor));
-                        result.getScanRecord().getServiceData();
-                        mLeDeviceListAdapter.notifyDataSetChanged();
-                    }
-*/
-                    mLeDeviceListAdapter.add(new LeScanRecord(result.getDevice(), result.getRssi(),uuid, major, minor));
-                    result.getScanRecord().getServiceData();
+                    //mLeDeviceListAdapter.addDevice(new LeScanRecord(result.getDevice(), result.getRssi(),uuid, major, minor));
+                    mLeDeviceListAdapter.addDevice(result.getDevice(), result.getRssi(),uuid, major, minor);
                     mLeDeviceListAdapter.notifyDataSetChanged();
 
                     int count = mLeDeviceListAdapter.getCount();
-
                     if(!loop_flag && rssi_boolean){
                         for(i = 0;i<count;i++){
                             if(mLeDevices.get(i).major_Num == Integer.parseInt(major_number)
@@ -447,22 +460,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                             }
                         }
                     }
-/*
-                    if(loop_flag && rssi_boolean){
-                        if(mLeDevices.get(i).major_Num == Integer.parseInt(major_number)
-                                && mLeDevices.get(i).minor_Num == Integer.parseInt(minor_number)) {
-                            Log.i(TAG, "######" + mLeDevices.get(i).major_Num  + "" + Integer.parseInt(major_number) +
-                                    " && " +  mLeDevices.get(i).minor_Num + "" +  Integer.parseInt(minor_number));
-                            rssi_boolean = false;
-                            DialogSimple(mLeDevices.get(i).rssi);
-
-                        }
-
-                    }
-*/
-
-
-
                 }
             });
         }
@@ -485,11 +482,29 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         }
         @Override
         public int compareTo(@NonNull LeScanRecord o) {
-            if(option.equals("1")){
-                return this.major_Num - ((LeScanRecord) o).major_Num;
-            }else if (option.equals("2")){
-                return this.minor_Num - ((LeScanRecord) o).minor_Num;
-            } else {
+            if (option.equals("1")){
+
+//                if (this.major_Num - ((LeScanRecord) o).major_Num == 0){
+                if (((LeScanRecord) o).major_Num - this.major_Num != 0){
+                    return this.major_Num - ((LeScanRecord) o).major_Num;
+                    //return this.minor_Num - ((LeScanRecord) o).minor_Num;
+                }else{
+                    return this.minor_Num - ((LeScanRecord) o).minor_Num;
+                }
+                //return ((LeScanRecord) o).major_Num - this.major_Num;
+
+            }
+            else if (option.equals("2")){
+/*                if (((LeScanRecord) o).major_Num - this.major_Num != 0){
+                    return ((LeScanRecord) o).major_Num - this.major_Num ;
+                    //return this.minor_Num - ((LeScanRecord) o).minor_Num;
+                }else{
+                    return ((LeScanRecord) o).minor_Num - this.minor_Num ;
+                }
+*/                return this.minor_Num - ((LeScanRecord) o).minor_Num;
+
+            }
+            else {
                 return ((LeScanRecord) o).rssi - this.rssi;
             }
         }
@@ -504,7 +519,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
     private void setupSharePreferences() {
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
-
         major_number = sharedPreferences.getString(getString(R.string.pref_show_major_key), getString(R.string.pref_major_default));
 //        Log.i(TAG, "Major 11 : " + major_number);
         minor_number = sharedPreferences.getString(getString(R.string.pref_show_minor_key), getString(R.string.pref_minor_default));
@@ -512,38 +526,31 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         rssi_value = sharedPreferences.getString(getString(R.string.pref_rssi_key), getString(R.string.pref_rssi_default));
 //        Log.i(TAG, "rssi 11 : " + rssi_value);
         rssi_boolean = sharedPreferences.getBoolean(getString(R.string.pref_popup_key), getResources().getBoolean((R.bool.pref_rssi_default)));
-     // Log.i(TAG, "rssi_boolean  : " + rssi_boolean + "  shard : " + sharedPreferences.getBoolean(getString(R.string.pref_rssi_check_key), getResources().getBoolean((R.bool.pref_rssi_default))));
-
 
         sortingOptionFromPreferences(sharedPreferences);
-
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     private void sortingOptionFromPreferences(SharedPreferences sharedPreferences){
         option = sharedPreferences.getString(getString(R.string.pref_check_key), getString(R.string.pref_rssi_check_value));
-        Log.i(TAG,"option selected "+ option);
     }
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.pref_show_major_key))) {
             major_number = sharedPreferences.getString(key, getResources().getString(R.string.pref_major_default));
             //Log.i(TAG, " Test2 : " + major_number);
-        }
-        else if (key.equals(getString(R.string.pref_popup_key))) {
+        } else if (key.equals(getString(R.string.pref_popup_key))) {
             rssi_boolean = sharedPreferences.getBoolean(key, getResources().getBoolean((R.bool.pref_rssi_default)));
             //Log.i(TAG, " rssi_booleannnnnnn: " + rssi_boolean + "  shard : " + sharedPreferences.getBoolean(getString(R.string.pref_rssi_check_key), getResources().getBoolean((R.bool.pref_rssi_default))));
-        }
-        else if (key.equals(getString(R.string.pref_show_minor_key))) {
+        } else if (key.equals(getString(R.string.pref_show_minor_key))) {
             minor_number = sharedPreferences.getString(key, getResources().getString((R.string.pref_minor_default)));
-        }
-        else if (key.equals(getString(R.string.pref_rssi_key))) {
+        } else if (key.equals(getString(R.string.pref_rssi_key))) {
             rssi_value = sharedPreferences.getString(key, getResources().getString((R.string.pref_rssi_default)));
-        }
-        else if(key.equals(getString(R.string.pref_check_key))){
+        } else if(key.equals(getString(R.string.pref_check_key))){
             sortingOptionFromPreferences(sharedPreferences);
         }
     }
+
     private static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
         for ( int j = 0; j < bytes.length; j++ ) {
@@ -552,34 +559,22 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
         return new String(hexChars);
-
     }
 
     private void DialogSimple(int Major,int Minor,int rssi){
-
-
-        //Log.i(TAG,"Dialog fuction " +         mLeDevices.get(0).device);
-
-
         AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
         alt_bld.setMessage(" Major : " +  Major +" Minor : " + Minor +"\n" + " Rssi : " + rssi).setCancelable(
-                false).setPositiveButton("Yes",
+                false).setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // Action for 'Yes' Button
-                    }
-                }).setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // Action for 'NO' Button
-                        dialog.cancel();
                     }
                 });
         AlertDialog alert = alt_bld.create();
         // Title for AlertDialog
         alert.setTitle("Title");
         // Icon for AlertDialog
-        alert.setIcon(R.drawable.ic_launcher);
+        alert.setIcon(R.drawable.ic_status);
         alert.show();
     }
 }

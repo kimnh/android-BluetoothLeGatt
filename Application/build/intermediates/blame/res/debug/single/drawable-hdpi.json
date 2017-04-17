@@ -6,5 +6,9 @@
     {
         "merged": "C:\\Users\\kim\\Downloads\\pntbiz\\android-BluetoothLeGatt\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_launcher.png",
         "source": "C:\\Users\\kim\\Downloads\\pntbiz\\android-BluetoothLeGatt\\Application\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\kim\\Downloads\\pntbiz\\android-BluetoothLeGatt\\Application\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_logo_pnt.png",
+        "source": "C:\\Users\\kim\\Downloads\\pntbiz\\android-BluetoothLeGatt\\Application\\src\\main\\res\\drawable-hdpi\\ic_logo_pnt.png"
     }
 ]
