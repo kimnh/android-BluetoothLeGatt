@@ -483,7 +483,6 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
         @Override
         public int compareTo(@NonNull LeScanRecord o) {
             if (option.equals("1")){
-
 //                if (this.major_Num - ((LeScanRecord) o).major_Num == 0){
                 if (((LeScanRecord) o).major_Num - this.major_Num != 0){
                     return this.major_Num - ((LeScanRecord) o).major_Num;
@@ -492,17 +491,15 @@ implements SharedPreferences.OnSharedPreferenceChangeListener {
                     return this.minor_Num - ((LeScanRecord) o).minor_Num;
                 }
                 //return ((LeScanRecord) o).major_Num - this.major_Num;
-
             }
             else if (option.equals("2")){
-/*                if (((LeScanRecord) o).major_Num - this.major_Num != 0){
+                if (((LeScanRecord) o).major_Num - this.major_Num != 0){
                     return ((LeScanRecord) o).major_Num - this.major_Num ;
                     //return this.minor_Num - ((LeScanRecord) o).minor_Num;
                 }else{
                     return ((LeScanRecord) o).minor_Num - this.minor_Num ;
                 }
-*/                return this.minor_Num - ((LeScanRecord) o).minor_Num;
-
+//                return this.minor_Num - ((LeScanRecord) o).minor_Num;
             }
             else {
                 return ((LeScanRecord) o).rssi - this.rssi;
